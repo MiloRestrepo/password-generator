@@ -1,9 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var lowercase = ["a", "b", "c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-var uppercase = ["A", "B", "C", "D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-var numeric = ["0", "1", "2","3","4","5","6","7","8","9"]
-var special = ["@", "/"]
+var lowercase = ["a", "b", "c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var uppercase = ["A", "B", "C", "D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var numeric = ["0", "1", "2","3","4","5","6","7","8","9"];
+var special = ["@", "/","*","%","#","$"];
 
 
 function getOptions() {
@@ -19,7 +19,7 @@ function getOptions() {
 
   }
   var hasLowercase = confirm("Click ok to include lowercase characters");
-  var hasUppercase = confirm("Click ok to include Uppercase characters");
+  var hasUppercase = confirm("Click ok to include uppercase characters");
   var hasNumeric = confirm("Click ok to include numeric characters");
   var hasSpecial = confirm("Click ok to include special characters");
 
@@ -29,7 +29,10 @@ function getOptions() {
   }
   var passwordOptions = {
     length: length,
-    hasLowercase: lowercase,
+    hasLowercase: hasLowercase,
+    hasUppercase: hasUppercase,
+    hasNumeric: hasNumeric,
+    hasSpecial: hasSpecial,
 
   };
   return passwordOptions;
@@ -45,8 +48,41 @@ function randomArr(arr) {
 }
 
 function generatePassword() {
+  var options = getOptions();
 
 
+  var result = [];
+  var possible = [];
+  var gaurantee = [];
+
+if (!options) return null;
+
+
+if (options.hasLowercase){
+  possible = possible.concat(lowercase);
+  gaurantee.push(randomArr(lowercase))
+}
+
+if (options.hasUppercase){
+  possible = possible.concat(uppercase);
+  gaurantee.push(randomArr(uppercase))
+}
+
+if (options.hasNumeric){
+  possible = possible.concat(numeric);
+  gaurantee.push(randomArr(numeric))
+}
+
+if (options.hasSpecial){
+  possible = possible.concat(special);
+  gaurantee.push(randomArr(special))
+}
+
+for(var i = 0; i < gaurantee.length; i++){
+  result [i] = gaurantee[i];
+}
+
+return result.join("")
 
 
 }
