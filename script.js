@@ -17,6 +17,7 @@ function getOptions() {
     return null;
 
   }
+  // True or False
   var hasLowercase = confirm("Click ok to include lowercase characters");
   var hasUppercase = confirm("Click ok to include uppercase characters");
   var hasNumeric = confirm("Click ok to include numeric characters");
@@ -34,6 +35,7 @@ function getOptions() {
     hasSpecial: hasSpecial,
 
   };
+
   return passwordOptions;
 
 
